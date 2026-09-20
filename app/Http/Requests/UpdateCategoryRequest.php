@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class UpdateCategoryRequest extends FormRequest
+{
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    public function rules(): array
+    {
+        return [
+            'name' => 'sometimes|string|max:255|unique:categories,name,' . $this->category->id,
+            'slug' => 'sometimes|nullable|string|max:255|unique:categories,slug,' . $this->category->id,
+            'description' => 'sometimes|nullable|string',
+            'parent_id' => 'sometimes|nullable|exists:categories,id',
+        ];
+    }
+}

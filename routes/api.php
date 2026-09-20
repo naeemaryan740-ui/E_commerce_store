@@ -1,18 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\HealthController;
-use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 
-Route::get('/hello', [WelcomeController::class, 'hello']);
 
-Route::get('/greet/{name}', [WelcomeController::class, 'greet']);
+// مسیرهای کامل CRUD برای دسته‌بندی‌ها و محصولات
 
-Route::get('/ping', function () {
-    return response()->json([
-        'pong' => true,
-        'time' => now()
-    ]);
-});
-
-Route::get('/health', [HealthController::class, 'ping']);
+Route::apiResource('categories', CategoryController::class);
+Route::apiResource('products', ProductController::class);
