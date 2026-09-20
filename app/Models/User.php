@@ -29,4 +29,28 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // هر کاربر می‌تواند چندین سفارش داشته باشد
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    // هر کاربر یک سبد خرید دارد
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+    }
+
+    // هر کاربر می‌تواند چندین نظر ثبت کند
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    // لیست علاقه‌مندی‌های کاربر
+    public function wishlistItems()
+    {
+        return $this->hasMany(WishlistItem::class);
+    }
 }
